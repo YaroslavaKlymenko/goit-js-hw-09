@@ -9,10 +9,8 @@ function createPromise(position, delay) {
       } else {
         reject({ position, delay });
       }
-
+    }, delay)
     })
-  })
-
 }
 
 const form = document.querySelector('.form')
@@ -30,7 +28,7 @@ form.addEventListener('submit', (Event) => {
       Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
     })
     .catch(({ position, delay }) => {
-      Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+      Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${currentDelay}ms`);
     })
   }
 })

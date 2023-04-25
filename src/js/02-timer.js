@@ -23,11 +23,12 @@ const options = {
 
         if (selectedDate < currentDate) {
         Notiflix.Notify.failure("Please choose a date in the future");
-        startBtn.disabled = true;
-        } else {
         startBtn.disabled = false;
+        } else {
+        startBtn.disabled = true;
         const timeDifference = selectedDate.getTime() - currentDate.getTime();
         startCountdown(timeDifference);
+        dateTimePicker.disabled = true;
   }
         
     },
@@ -57,7 +58,9 @@ const options = {
   
       if (timeDifference <= 0) {
         clearInterval(countdownInterval);
-      }
+        startBtn.disabled = false;
+        dateTimePicker.disabled = false;
+    }
     }, 1000);
   }
   
@@ -66,7 +69,6 @@ const options = {
     if (selectedDate) {
       startCountdown(selectedDate.getTime() - new Date().getTime());
       startBtn.disabled = true;
-    } else {
-      startBtn.disabled = true;
     }
   });
+
